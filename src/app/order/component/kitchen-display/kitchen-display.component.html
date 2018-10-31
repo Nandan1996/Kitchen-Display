@@ -1,0 +1,26 @@
+<div class="table-container">  
+  <table class="table">
+    <caption>Pending Orders</caption>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Created-till-now</th>
+        <th scope="col">Predicted</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of order$ | async; trackBy: trackByFn">
+        <td>{{order.product?.name}}</td>
+        <td>{{order.orderQuantity}}</td>
+        <td>{{order.created}}</td>
+        <td>{{order.predicted}}</td>
+        <td>
+          <button class="btn btn-primary btn-update-status"
+            (click)="completeOrder(order)">Done</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

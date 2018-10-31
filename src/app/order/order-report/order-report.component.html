@@ -1,0 +1,22 @@
+<div class="table-container">
+  <table class="table">
+    <caption>Today's Predictions</caption>
+    <thead>
+      <tr>
+        <th scope="col">Dish Name</th>
+        <th scope="col">Produced</th>
+        <th scope="col">Predicted</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let report of predictionReport$ | async">
+        <td>{{report.dishName}}</td>
+        <td>{{report.produced}}</td>
+        <td>{{report.predicted}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="btn btn-primary btn-bottom-right" 
+  (click)="downloadReport()" [disabled]="downloading || !data?.length">Download Report</button>

@@ -1,0 +1,35 @@
+<div class="row">
+  <ng-container *ngFor="let product of products; let i = index;">
+    <div class="col">
+      <app-product-card [product]="product"
+        (onPrediction)="onPrediction($event)"></app-product-card>
+    </div>
+    <div class="w-100" *ngIf="(i+1)%3 === 0"></div>
+  </ng-container>
+</div>
+
+<button type="button" class="btn btn-primary btn-bottom-right" (click)="productModal.show()">Add product</button>
+ 
+<div class="modal fade" bsModal #productModal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Add a Product</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="productModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" #productName="ngModel" ngModel
+            placeholder="Enter name"
+            class="form-control m-10" required/>
+          <input class="btn btn-primary" type="button" value="Add" 
+            [disabled]="productName.invalid"
+            (click)="addProduct(productName)"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
